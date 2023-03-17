@@ -9,23 +9,22 @@
         android:id="@+id/full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Nama lengkap"/>
+        android:hint="Nama Lengkap"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
-        android:textStyle="bold"
         android:layout_height="wrap_content"
-        android:text="Alamat Email"/>
+        android:hint="Alamat Email"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/phone"
         android:layout_width="wrap_content"
-        android:textStyle="bold"
         android:layout_height="wrap_content"
-       android:text="Phone" />
-
+        android:hint="Nomor Telphone"
+        android:textStyle="bold" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

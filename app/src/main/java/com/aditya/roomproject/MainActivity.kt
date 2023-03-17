@@ -19,9 +19,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var fab: FloatingActionButton
-    private var list = mutableListOf<User>()
     private lateinit var adapter: UserAdapter
     private lateinit var database: AppDatabase
+
+    private var list = mutableListOf<User>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,25 +33,25 @@ class MainActivity : AppCompatActivity() {
 
         database = AppDatabase.getInstance(applicationContext)
         adapter = UserAdapter(list)
-        adapter.setDialog(object : UserAdapter.Dialog{
+        adapter.setDialog(object : UserAdapter.Dialog {
             override fun onClick(position: Int) {
                 //membuat dialog view
-              val dialog = AlertDialog.Builder(this@MainActivity)
-                dialog.setTitle(list[position].fullName)
-                dialog.setItems(R.array.item_option,DialogInterface.OnClickListener{
-                        dialog, which ->
-                    if (which ==0){
-                        //coding ubah
-                        var intent = Intent( this@MainActivity, EditorActivity::class.java)
-                        var putExtra = intent.putExtra("id", list[position].uid)
-                        startActivity(intent)
-                    }else if(which==1){
-                        database.userDao().delete(list[position])
-                    }else{
-                        //coding batal
-                        dialog.dismiss()
-                    }
-                })
+                val dialog = AlertDialog.Builder(this@MainActivity).also {
+                    it.setTitle(list[position].fullName)
+                    it.setItems(R.array.item_option, DialogInterface.OnClickListener { dialog, which ->
+                            if (which == 0) {
+                                //coding ubah
+                                var intent = Intent(this@MainActivity, EditorActivity::class.java)
+                                var putExtra = intent.putExtra("id", list[position].uid)
+                                startActivity(intent)
+                            } else if (which == 1) {
+                                database.userDao().delete(list[position])
+                            } else {
+                                //coding batal
+                                dialog.dismiss()
+                            }
+                        })
+                }
                 // menampilakan dialog
                 val dialogView = dialog.create()
                 dialogView.show()

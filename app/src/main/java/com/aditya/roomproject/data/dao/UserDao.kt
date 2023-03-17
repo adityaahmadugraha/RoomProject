@@ -6,10 +6,12 @@ import com.aditya.roomproject.data.entity.User
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM user") //untuk mengambil semua data
+    //untuk mengambil semua data
+    @Query("SELECT * FROM user")
     fun getAll(): List<User>
 
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)") //untuk mengambil data berdasarkan user id
+    //untuk mengambil data berdasarkan user id
+    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<User>
 
 //    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
@@ -22,7 +24,7 @@ interface UserDao {
     @Delete
     fun delete(user: User)
 
-    @Query("Select * FROM user WHERE uid = :uid")
+    @Query("Select * FROM user WHERE vid = :vid")
     fun get(uid: Int) : User
 
     @Update
